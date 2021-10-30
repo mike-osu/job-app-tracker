@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>Job App Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <ul id="menu">
+    <li id="menuItem"><a href="/">Home</a></li>
+    <li id="menuItem"><a href="/companies">Companies</a></li>
+    <li id="menuItem"><a href="/contacts">Contacts</a></li>
+    <li id="menuItem"><a href="/candidates">Candidates</a></li>
+    <li id="menuItem"><a href="/jobs">Jobs</a></li>
+    <li id="menuItem"><a class="active" href="/jobtypes">Job Types</a></li>
+    <li id="menuItem"><a href="/applications">Applications</a></li>
+  </ul> 
+
+  <ul>
+    <li>List job types</li>
+    <li>Enter a new job type</li>
+  </ul>
+    
+  <table class="aTable">
+      <tr>
+        <th>job type</th>
+        <th>description</th>
+      </tr>
+      <tr>
+        <td>TECH</td>
+        <td>technical</td>
+      </tr>
+      <tr>
+        <td>ADMIN</td>
+        <td>administrative</td>   
+      </tr>
+      <tr>
+        <td>EXEC</td>
+        <td>executive</td>   
+      </tr>
+    </table>    
+
+    <br /><br />
+
+    <form>
+      <table cellpadding="4" cellspacing="4">
+        <tr>
+          <td>job_type_code</td>
+          <td>
+            <input text />        
+          </td>
+        </tr>
+          <td>description</td><td><input text /></td>
+        <tr>
+          <td colspan="2"><input type="submit" value="Add" /></td>  
+        </tr>
+      </table>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Job App Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <ul id="menu">
+    <li id="menuItem"><a href="/">Home</a></li>
+    <li id="menuItem"><a href="/companies">Companies</a></li>
+    <li id="menuItem"><a href="/contacts">Contacts</a></li>
+    <li id="menuItem"><a class="active" href="/candidates">Candidates</a></li>
+    <li id="menuItem"><a href="/jobs">Jobs</a></li>
+    <li id="menuItem"><a href="/jobtypes">Job Types</a></li>
+    <li id="menuItem"><a href="/applications">Applications</a></li>
+  </ul> 
+
+  <ul>
+    <li>List candidates</li>
+    <li>Enter a new candidate</li>
+  </ul>
+    
+  <table class="aTable">
+      <tr>
+        <th>first name</th>
+        <th>last name</th>
+        <th>email address</th>
+        <th>phone number</th>
+      </tr>
+      <tr>
+        <td>Nina</td>
+        <td>Argade</td>
+        <td>argaden@oregonstate.edu</td>
+        <td>949-555-0121</td>
+      </tr>
+    </table>    
+
+    <br /><br />
+    
+    <form>
+      <table cellpadding="4" cellspacing="4">
+        <tr>
+          <td>first_name</td><td><input text /></td>
+        </tr>
+          <td>last_name</td><td><input text /></td>
+        <tr>
+          <td>email_address</td><td><input text /></td>
+        </tr>
+        <tr>
+          <td>phone_number</td><td><input text /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" value="Add" /></td>  
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

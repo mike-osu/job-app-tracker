@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:  
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc12345
+      MYSQL_DATABASE: dev_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - $HOME/dev/job-app-tracker/schema.sql:/schema.sql
+
+
+# docker-compose up -d
+# docker exec -it flask-library_db_1 bash 
+# mysql -u root -p dev_db < schema.sql

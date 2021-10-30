@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Job App Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <ul id="menu">
+      <li id="menuItem"><a href="/">Home</a></li>
+      <li id="menuItem"><a class="active" href="/companies">Companies</a></li>
+      <li id="menuItem"><a href="/contacts">Contacts</a></li>
+      <li id="menuItem"><a href="/candidates">Candidates</a></li>
+      <li id="menuItem"><a href="/jobs">Jobs</a></li>
+      <li id="menuItem"><a href="/jobtypes">Job Types</a></li>
+      <li id="menuItem"><a href="/applications">Applications</a></li>
+    </ul>  
+
+    <ul>
+      <li>List companies</li>
+      <li>Enter a new company</li>
+    </ul>
+
+    <table class="aTable">
+      <tr>
+        <th>company_id</th>
+        <th>name</th>
+        <th>location</th>
+        <th>industry</th>
+        <th>size</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Hooli</td>
+        <td>Silicon Valley</td>
+        <td>Internet</td>
+        <td>10000</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Acme Corporation</td>
+        <td>Los Angeles</td>
+        <td>Widgets</td>
+        <td>5000</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Los Pollos Hermanos</td>
+        <td>Albuquerque</td>
+        <td>Fast Food</td>
+        <td>2500</td>
+      </tr>
+    </table>    
+
+    <br /><br />
+
+    <form>
+      <table cellpadding="4" cellspacing="4">
+        <tr>
+          <td>name</td><td><input text /></td>
+        </tr>
+          <td>location</td><td><input text /></td>
+        <tr>
+          <td>industry</td><td><input text /></td>
+        </tr>
+        <tr>
+          <td>size <small>(number)</small></td><td><input text /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" value="Add" /></td>  
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

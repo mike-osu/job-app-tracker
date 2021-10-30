@@ -1,0 +1,59 @@
+body {
+	background-color: #c6c6c6;
+}
+
+/*
+Horizontal navigation bar code below from 
+https://www.w3schools.com/css/css_navbar.asp 
+
+Navigation bar is built with <ul> tags with an <li> element 
+for each menu item.  Comments added below for each selector.
+*/
+
+/* "active" class selector to give current menu item a different color */
+.active {
+	background-color: #717171;
+}
+
+/* The "menu" id selector for a ul tag customizes the navigation bar */
+ul#menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+  
+/* Make menu items sit right next to one another starting from the left of the page */
+li#menuItem {
+	float: left;
+}
+
+/* Define text color, alignment and menu item padding */
+li#menuItem a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+  
+/* Set default (not active) menu item background color */
+li#menuItem a:hover:not(.active) {
+	background-color: #111;
+}
+
+.aTable {
+    border-spacing: 4px;
+}
+.aTable tr:nth-child(even) {
+    background-color: #DCDCDC;
+}
+
+.aTable tr:nth-child(odd) {
+    background-color: #B8B8B8
+}
+
+.aTable td {
+	padding: 5px;
+}
