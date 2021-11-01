@@ -18,26 +18,44 @@ db_connection = db.connect_to_database()
 def root():
     return render_template('index.html')
 
+"""
+Companies
+"""
 @app.route('/companies')
 def companies():
     return render_template('companies.html')
 
+"""
+Contacts
+"""
 @app.route('/contacts')
 def contacts():
     return render_template('contacts.html')
 
+"""
+Candidates
+"""
 @app.route('/candidates')
 def candidates():
     return render_template('candidates.html')  
 
+"""
+Jobs
+"""
 @app.route('/jobs')
 def jobs():
     return render_template('jobs.html')       
 
+"""
+JobTypes
+"""
 @app.route('/jobtypes')
 def jobtypes():
     return render_template('jobtypes.html')      
 
+"""
+Applications
+"""
 @app.route('/applications', methods=['post', 'get'])
 def applications():
     if request.method == 'POST':
