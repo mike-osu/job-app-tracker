@@ -15,11 +15,10 @@
     <li id="menuItem"><a class="active" href="/applications">Applications</a></li>
   </ul> 
 
-  <ul>
-    <li>List job applications</li>
-    <li>Enter a new job application</li>
-    <li>Delete a job application</li>
-  </ul>
+  <br>
+  <h2>Job App Tracker:  Enter and Delete Job Applications</h2>
+  <p></p>
+  <br>
 
   <table class="aTable">
     <thead>
@@ -71,7 +70,7 @@
             <input type="hidden" id="statement" name="statement" value="DELETE">
             <input type="hidden" id="job_id" name="job_id" value="{{app['job_id']}}">
             <input type="hidden" id="candidate_id" name="candidate_id" value="{{app['candidate_id']}}">
-            <input type="submit" value="Delete">
+            <input type="submit" value="Delete Application">
           </form>
         </td>
     </tr>
@@ -82,35 +81,40 @@
 
   <br />
   <h3>Submit a candidate job application</h3>
-
-  <form action="" method="POST">
-    <input type="hidden" id="statement" name="statement" value="INSERT">
-    <table cellpadding="4" cellspacing="4">
-      <tr>
-        <td><b>Job:</b></td>
-        <td>
-          <select name="job_id" id="job_id">
-            {% for job in jobs %}
-            <option value="{{job['job_id']}}">{{job['title']}}, {{job['company']}}</option>
-            {% endfor %}
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><b>Candidate:</b></td>
-        <td>
-          <select name="candidate_id" id="candidate_id">
-            {% for c in candidates %}
-            <option value="{{c['candidate_id']}}">{{c['first_name']}} {{c['last_name']}}</option>
-            {% endfor %}
-          </select> 
-        </td>
-      </tr>    
-      <tr>
-        <td colspan="2"><input type="submit" value="Apply" /></td>   
-      </tr>
-    </table>
-  </form>
+  <div id="form">
+    <form action="" method="POST">
+      <fieldset>
+        <legend><h3>Record a Candidate Job Application
+          <small>( * indicates a required field )</h3></legend>
+      <input type="hidden" id="statement" name="statement" value="INSERT">
+      <table cellpadding="4" cellspacing="4">
+        <tr>
+          <td><b>Job *</b></td>
+          <td>
+            <select name="job_id" id="job_id">
+              {% for job in jobs %}
+              <option value="{{job['job_id']}}">{{job['title']}}, {{job['company']}}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Candidate *</b></td>
+          <td>
+            <select name="candidate_id" id="candidate_id">
+              {% for c in candidates %}
+              <option value="{{c['candidate_id']}}">{{c['first_name']}} {{c['last_name']}}</option>
+              {% endfor %}
+            </select> 
+          </td>
+        </tr>    
+        <tr>
+          <td colspan="2"><input type="submit" value="Enter Application" /></td>   
+        </tr>
+      </table>
+      </fieldset>
+    </form>
+  </div>
 
   {% with messages = get_flashed_messages() %}
     {% if messages %}

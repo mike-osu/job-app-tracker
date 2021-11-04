@@ -15,17 +15,17 @@
     <li id="menuItem"><a href="/applications">Applications</a></li>
   </ul> 
 
-  <ul>
-    <li>List candidates</li>
-    <li>Enter a new candidate</li>
-  </ul>
+  <br>
+  <h2>Job App Tracker:  Enter a New Candidate</h2>
+  <p></p>
+  <br>
     
   <table class="aTable">
       <tr>
-        <th>first name</th>
-        <th>last name</th>
-        <th>email address</th>
-        <th>phone number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
       </tr>
       <tr>
         <td>Nina</td>
@@ -34,25 +34,30 @@
         <td>949-555-0121</td>
       </tr>
     </table>    
-
-    <br /><br />
     
-    <form>
+    <div id="form">
+      <form>
+        <fieldset>
+        <legend><h3>Add a Candidate
+          <small>( * indicates a required field )</h3></legend>
       <table cellpadding="4" cellspacing="4">
         <tr>
-          <td>first_name</td><td><input text /></td>
+          <td>First Name *</td><td><input text /></td>
         </tr>
-          <td>last_name</td><td><input text /></td>
+          <td>Last Name *</td><td><input text /></td>
         <tr>
-          <td>email_address</td><td><input text /></td>
-        </tr>
-        <tr>
-          <td>phone_number</td><td><input text /></td>
+          <td>Email Address *</td><td><input text /></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="submit" value="Add" /></td>  
+          <td>Phone Number</td><td><input text /></td>
+        </tr>
+        <tr>
+          <td colspan="4"><input type="submit" value="Add Candidate" /></td>  
         </tr>
       </table>
-    </form>
+    </fieldset>
+  </form>  
+  </div>
+
 </body>
 </html>

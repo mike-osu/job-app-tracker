@@ -15,46 +15,48 @@
     <li id="menuItem"><a href="/applications">Applications</a></li>
   </ul> 
 
-  <ul>
-    <li>List job types</li>
-    <li>Enter a new job type</li>
-  </ul>
+  <br>
+  <h2>Job App Tracker:  Enter a New Job Type</h2>
+  <p></p>
+  <br>
     
   <table class="aTable">
       <tr>
-        <th>job type</th>
-        <th>description</th>
+        <th>Job Type</th>
+        <th>Description</th>
       </tr>
       <tr>
         <td>TECH</td>
-        <td>technical</td>
+        <td>Technical</td>
       </tr>
       <tr>
         <td>ADMIN</td>
-        <td>administrative</td>   
+        <td>Administrative</td>   
       </tr>
       <tr>
         <td>EXEC</td>
-        <td>executive</td>   
+        <td>Executive</td>   
       </tr>
     </table>    
 
-    <br /><br />
-
-    <form>
+    <div id="form">
+      <form>
+        <fieldset>
+        <legend><h3>Add a Job Type
+          <small>( * indicates a required field )</h3></legend>
       <table cellpadding="4" cellspacing="4">
         <tr>
-          <td>job_type_code</td>
-          <td>
-            <input text />        
-          </td>
+          <td>job_type_code *</td>
+          <td><input text placeholder="Enter Code in ALL Caps"/></td>
         </tr>
-          <td>description</td><td><input text /></td>
+          <td>Description *</td><td><input text /></td>
         <tr>
-          <td colspan="2"><input type="submit" value="Add" /></td>  
+          <td colspan="4"><input type="submit" value="Add Job Type" /></td>  
         </tr>
       </table>
-    </form>
+    </fieldset>
+  </form>  
+  </div>
 
 </body>
 </html>

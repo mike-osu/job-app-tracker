@@ -15,48 +15,53 @@
       <li id="menuItem"><a href="/applications">Applications</a></li>
     </ul>  
 
-    <ul>
-      <li>List contacts</li>
-      <li>Enter a new contact</li>
-      <li>Link contact to company via company_id</li>
-    </ul>
-
-    <table class="aTable">
-      <tr>
-        <th>contact_id</th>
-        <th>first name</th>
-        <th>last name</th>
-        <th>email address</th>
-        <th>company_id</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Gus</td>
-        <td>Fring</td>
-        <td>gusfring@emaildomain.com</td>
-        <td>3</td>
-      </tr>
-
-    </table>    
-
-    <br /><br />
-
-    <form>
-      <table cellpadding="4" cellspacing="4">
+    <br>
+    <h2>Job App Tracker:  Add a Contact to a Company</h2>
+  
+    <p></p>
+    <br>
+  
+  
+      <table class="aTable">
         <tr>
-          <td>first_name</td><td><input text /></td>
-        </tr>
-          <td>last_name</td><td><input text /></td>
-        <tr>
-          <td>email_address</td><td><input text /></td>
-        <tr>
-          <td>company_id<small> (required)</small></td><td><input text /></td>
+          <th>contact_id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email Address</th>
+          <th>company_id</th>
         </tr>
         <tr>
-          <td colspan="2"><input type="submit" value="Add" /></td>  
+          <td>1</td>
+          <td>Gus</td>
+          <td>Fring</td>
+          <td>gusfring@pollo.com</td>
+          <td>3</td>
         </tr>
-      </table>
-    </form>
-
-</body>
-</html>
+      </table>    
+  
+      <div id="form">
+        <form>
+          <fieldset>
+          <legend><h3>Add a Contact
+            <small>( * indicates a required field )</h3></legend>
+        <table cellpadding="4" cellspacing="4">
+          <tr>
+            <td>First Name *</td><td><input text /></td>
+          </tr>
+            <td>Last Name *</td><td><input text /></td>
+          <tr>
+            <td>Email Address *</td><td><input text /></td>
+          <tr>
+            <td>company_id *</td><td><input text /></td>
+          </tr>
+          <tr>
+            <td colspan="4"><input type="submit" value="Add Contact" /></td>  
+          </tr>
+        </table>
+      </fieldset>
+    </form>  
+    </div>
+  
+  </body>
+  </html>
+  

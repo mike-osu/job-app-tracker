@@ -15,28 +15,28 @@
     <li id="menuItem"><a href="/applications">Applications</a></li>
   </ul>   
 
-  <ul>
-    <li>List jobs</li>
-    <li>Enter a new job</li>
-    <li>Update a job (allow setting job type to NULL)</li>
-  </ul>
-  
+  <br>
+  <h2>Job App Tracker:  Add, Update, and Search Jobs</h2>
+
+  <p></p>
+  <br>
+
   <table class="aTable">
     <tr>
       <th>job_id</th>
-      <th>title</th>
-      <th>location</th>
-      <th>descripton</th>
+      <th>Title</th>
+      <th>Location</th>
+      <th>Descripton</th>
       <th>is_active</th>
-      <th>company</th>
-      <th>job_type</th>
+      <th>Company</th>
+      <th>Job Type</th>
     </tr>
     <tr>
       <td>1</td>
       <td>Software Engineer</td>
-      <td>remote</td>
-      <td>Write Java Code</td>
-      <td>true</td>
+      <td>Remote</td>
+      <td>Write Java code</td>
+      <td>Yes</td>
       <td>Hooli</td>
       <td>Technical</td>
     </tr>
@@ -45,7 +45,7 @@
       <td>Administrative Assistant</td>
       <td>Los Angeles</td>
       <td>Assist the CEO</td>
-      <td>true</td>
+      <td>No</td>
       <td>Acme Corporation</td>
       <td>Administrative</td>
     </tr>
@@ -54,26 +54,28 @@
       <td>Manager</td>
       <td>New Mexico</td>
       <td>Supervise fast food employees</td>
-      <td>true</td>
+      <td>Yes</td>
       <td>Los Pollos Hermanos</td>
       <td></td>
     </tr>
   </table>    
 
-  <hr /><br />
 
-  <h3>Add a new Job</h3>
+<div id="form">
   <form>
+    <fieldset>
+    <legend><h3>Add a New Job 
+      <small>( * indicates a required field )</h3></legend>
     <table cellpadding="4" cellspacing="4">
       <tr>
-        <td>title <small>(required)</small></td><td><input text /></td>
+        <td>Title *</td><td><input text /></td>
       </tr>
-        <td>location <small>(required)</small></td><td><input text /></td>
+        <td>Location *</td><td><input text /></td>
       <tr>
-        <td>description <small>(required)</small></td><td><textarea rows="6" cols="50"></textarea></td>
+        <td>Description *</td><td><textarea rows="6" cols="50"></textarea></td>
       </tr>
       <tr>
-        <td>company <small>(required)</small></td>
+        <td>Company *</td>
         <td>
           <select>
             <option value="">Select...</option>
@@ -84,7 +86,7 @@
         </td>
       </tr>   
       <tr>
-        <td>job_type</td>
+        <td>Job Type</td>
         <td>
           <select>
             <option value="">None</option>
@@ -93,18 +95,23 @@
             <option value="ADMIN">Administrative</option>
           </select>                   
         </td>
-      </tr>          
-      <tr>
-        <td colspan="2"><input type="submit" value="Add" /></td>  
+      </tr>    
+        <td colspan="4"><input type="submit" value="Add Job" /></td>  
       </tr>
     </table>
+  </fieldset>
   </form>  
+</div>
 
-  <h3>Update a Job</h3>
+<div id="form"> 
   <form>
+    <fieldset>
+    <legend><h2>Update a Job:
+      <small>( * indicates a required field )</h2></legend>
+
     <table cellpadding="4" cellspacing="4">
       <tr>
-        <td><b>job to update</b></td>
+        <td>Job to Update *</td>
         <td>
           <select>
             <option value="">Select...</option>
@@ -115,20 +122,19 @@
         </td>
       </tr>
       <tr>
-        <td>title <small>(required)</small></td><td><input text /></td>
+        <td>Title *</td><td><input text /></td>
       </tr>
-        <td>location <small>(required)</small></td><td><input text /></td>
+        <td>Location *</td><td><input text /></td>
       <tr>
-        <td>description <small>(required)</small></td><td><input text /></td>
+        <td>Description *</td><td><input text /></td>
       </tr>
       <tr>
-        <td>is_active</td>
+        <td>is_active? * </td>
         <td>
-          <input type="checkbox">
-        </td>
+          <input type="checkbox"><small> (mark if yes)</small></td>
       </tr>  
       <tr>
-        <td>job_type</td>
+        <td>Job Type</td>
         <td>
           <select>
             <option value="">None</option>
@@ -139,29 +145,39 @@
         </td>
       </tr>          
       <tr>
-        <td colspan="2"><input type="submit" value="Update" /></td>  
+        <td colspan="4"><input type="submit" value="Update Job" /></td>  
       </tr>
     </table>
-  </form> 
+  </fieldset>
+</form>  
+</div>
+
   
-  <h3>Search jobs by:</h3>
+<div id="form"> 
   <form>
+    <fieldset>
+    <legend><h1>Search Jobs:</h1></legend>
     <table cellpadding="4" cellspacing="4">
       <tr>
-        <td>
+        <td>Search by:
           <select>
             <option value="">Select...</option>
-            <option value="company_id">company</option>
-            <option value="job_type">job_type</option>
-            <option value="title">title</option>
-            <option value="location">location</option>
+            <option value="company_id">Company</option>
+            <option value="job_type">Job Type</option>
+            <option value="title">Title</option>
+            <option value="location">Location</option>
           </select>
         </td>
       </tr>
-        <td><input text placeholder="Enter search value"/></td>
-        <td colspan="2"><input type="submit" value="Search" /></td>  
+        <td>Enter search phrase:</td><td><input text /></td>
+      <tr>
+        <td colspan="4"><input type="submit" value="Search All Jobs" /></td>  
       </tr>
+    </tr>
     </table>
-  </form>   
+</fieldset>
+</form>  
+</div>
+
 </body>
 </html>

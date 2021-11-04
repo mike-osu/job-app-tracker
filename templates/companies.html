@@ -15,60 +15,67 @@
       <li id="menuItem"><a href="/applications">Applications</a></li>
     </ul>  
 
-    <ul>
-      <li>List companies</li>
-      <li>Enter a new company</li>
-    </ul>
-
-    <table class="aTable">
-      <tr>
-        <th>company_id</th>
-        <th>name</th>
-        <th>location</th>
-        <th>industry</th>
-        <th>size</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Hooli</td>
-        <td>Silicon Valley</td>
-        <td>Internet</td>
-        <td>10000</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Acme Corporation</td>
-        <td>Los Angeles</td>
-        <td>Widgets</td>
-        <td>5000</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Los Pollos Hermanos</td>
-        <td>Albuquerque</td>
-        <td>Fast Food</td>
-        <td>2500</td>
-      </tr>
-    </table>    
-
-    <br /><br />
-
-    <form>
-      <table cellpadding="4" cellspacing="4">
+    <br>
+    <h2>Job App Tracker:  Add a New Company</h2>
+    <p></p>
+    <br>
+  
+      <table class="aTable">
         <tr>
-          <td>name</td><td><input text /></td>
-        </tr>
-          <td>location</td><td><input text /></td>
-        <tr>
-          <td>industry</td><td><input text /></td>
+          <th>company_id</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Industry</th>
+          <th>Size</th>
         </tr>
         <tr>
-          <td>size <small>(number)</small></td><td><input text /></td>
+          <td>1</td>
+          <td>Hooli</td>
+          <td>Silicon Valley</td>
+          <td>Internet</td>
+          <td>10000</td>
         </tr>
         <tr>
-          <td colspan="2"><input type="submit" value="Add" /></td>  
+          <td>2</td>
+          <td>Acme Corporation</td>
+          <td>Los Angeles</td>
+          <td>Widgets</td>
+          <td>5000</td>
         </tr>
-      </table>
-    </form>
-</body>
-</html>
+        <tr>
+          <td>3</td>
+          <td>Los Pollos Hermanos</td>
+          <td>Albuquerque</td>
+          <td>Fast Food</td>
+          <td>2500</td>
+        </tr>
+      </table>    
+  
+  
+      <div id="form">
+        <form>
+          <fieldset>
+          <legend><h3>Add a Company
+            <small>( * indicates a required field )</h3></legend>
+        <table cellpadding="4" cellspacing="4">
+          <tr>
+            <td>Name *</td><td><input text /></td>
+          </tr>
+            <td>Location *</td><td><input text /></td>
+          <tr>
+            <td>Industry *</td><td><input text /></td>
+          </tr>
+          <tr>
+            <td>Size * </td><td><input text placeholder="Enter a number"/></td>
+          </tr>
+          <tr>
+            <td colspan="4"><input type="submit" value="Add Company" /></td>  
+          </tr>
+        </table>
+      </fieldset>
+    </form>  
+    </div>
+  
+  </body>
+  </html>
+  

@@ -85,13 +85,13 @@ def applications():
                 updateQuery = "UPDATE applications SET is_archived = 1 WHERE candidate_id = {} AND job_id = {};".format(candidateId, jobId)
                 db.execute_query(db_connection=db_connection, query=updateQuery)
 
-    appsQuery = """SELECT j.job_id, j.title, j.location, 
+    appsQuery = """SELECT j.job_id, j.title 'Title', j.location 'Location', 
                 CASE
                     WHEN j.is_active = 1 THEN 'true'
                     ELSE 'false'
-                END 'active job',
-                j.job_type_code, c.name 'company', 
-                c2.candidate_id, c2.first_name, c2.last_name, c2.email, date(a.date_applied) 'date applied', 
+                END 'Active Job',
+                j.job_type_code, c.name 'Company', 
+                c2.candidate_id, c2.first_name 'First Name', c2.last_name 'Last Name', c2.email 'Email', date(a.date_applied) 'Date Applied', 
                 CASE
                     WHEN  a.is_archived = 1 THEN 'true'
                     ELSE 'false'
