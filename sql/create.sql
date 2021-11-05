@@ -16,7 +16,7 @@ CREATE TABLE contacts(
     PRIMARY KEY ( contact_id ),
     FOREIGN KEY ( company_id )
         REFERENCES companies(company_id)
-        ON DELETE CASCADE   # if parent company recored is deleted, also delete contact row
+        ON DELETE CASCADE   # if parent company record is deleted, also delete contact row
 );
 
 CREATE TABLE candidates(
@@ -64,11 +64,4 @@ CREATE TABLE applications(
         REFERENCES jobs(job_id)
         ON DELETE RESTRICT   # prevent parent job row from being deleted
 );
-
-# DROP TABLE contacts;
-# DROP TABLE companies;
-# DROP TABLE applications;
-# DROP TABLE candidates;
-# DROP TABLE jobs;
-# DROP TABLE job_types;
 
