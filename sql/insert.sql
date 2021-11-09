@@ -1,7 +1,9 @@
 INSERT INTO companies (name, location, industry, size) VALUES
 ('Hooli', 'Silicon Valley', 'Internet', 10000),
 ('Acme Corporation', 'Los Angeles', 'Widgets', 5000),
-('Los Pollos Hermanos', 'Albuquerque', 'Fast Food', 2500);
+('Los Pollos Hermanos', 'Albuquerque', 'Fast Food', 2500),
+('Delos Incorporated', 'Westworld', 'Entertainment', 20000),
+('Monsters, Inc.', 'Monstropolis', 'Energy', 15000);
 
 INSERT INTO contacts (first_name, last_name, email, company_id) VALUES
 ('Richard', 'Hendricks', 'rhendricks@hooli.com', 1),
