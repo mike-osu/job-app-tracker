@@ -56,7 +56,7 @@ VALUES (:title_input, :location_input, :description_input, 1, :company_id_from_d
 
 -- Get jobs in table to populate a dropdown for updating/editing
 SELECT jobs.title, companies.name
-FROM jobs LEFT OUTER JOIN companies ON jobs.company_id = companies.company_id;
+FROM jobs INNER JOIN companies ON jobs.company_id = companies.company_id;
 
 -- Get all company ID and name values to populate the Company dropdown
 SELECT company_id, name FROM companies;
