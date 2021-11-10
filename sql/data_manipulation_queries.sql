@@ -47,7 +47,7 @@ VALUES (:first_name_input, :last_name_input, :email_address_input, :phone_number
 
 -- Show all Jobs in the table
 SELECT * from jobs;
-SELECT jobs.*, company.name
+SELECT jobs.*, companies.name
 FROM jobs INNER JOIN companies ON jobs.company_id = companies.company_id;
 
 -- Add a new Job
