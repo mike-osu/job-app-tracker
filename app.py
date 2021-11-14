@@ -42,9 +42,43 @@ def candidates():
 """
 Jobs
 """
-@app.route('/jobs')
+@app.route('/jobs', methods=['post', 'get'])
 def jobs():
-    return render_template('jobs.html')       
+    if request.method == 'POST':
+        title = request.form['title']
+        location = request.form['location']
+        description = request.form['description']
+        companyId = request.form['company_id']
+        jobTypeCode = request.form['job_type_code']
+
+        if request.form['statement'] == 'INSERT':
+            if (jobTypeCode != ''):
+                insertJobQuery = '''INSERT INTO jobs (title, location, description, is_active, company_id, job_type_code) 
+                    VALUES ('{}', '{}', '{}', {}, {}, '{}');'''.format(title, location, description, 1, companyId, jobTypeCode)
+            else:
+                insertJobQuery = '''INSERT INTO jobs (title, location, description, is_active, company_id) 
+                    VALUES ('{}', '{}', '{}', {}, {});'''.format(title, location, description, 1, companyId)           
+
+            db.execute_query(db_connection=db_connection, query=insertJobQuery)
+
+    jobsQuery = """SELECT j.job_id, j.title 'Title', j.location 'Location', j.description 'Description',
+        IF(j.is_active = 1, 'Yes', 'No') 'Active Job',
+        c.name 'Company', jt.description 'Job Type'
+    FROM jobs j INNER JOIN companies c on j.company_id = c.company_id
+    LEFT OUTER JOIN job_types jt on j.job_type_code = jt.job_type_code;"""
+
+    cursor = db.execute_query(db_connection=db_connection, query=jobsQuery)
+    jobs = cursor.fetchall()  
+
+    companiesQuery = "SELECT company_id, name FROM companies;"
+    cursor = db.execute_query(db_connection=db_connection, query=companiesQuery)
+    companies = cursor.fetchall() 
+
+    jobTypesQuery = "SELECT job_type_code, description FROM job_types;"
+    cursor = db.execute_query(db_connection=db_connection, query=jobTypesQuery)
+    jobTypes = cursor.fetchall()
+
+    return render_template('jobs.html', jobs=jobs, companies=companies, jobTypes=jobTypes)       
 
 """
 JobTypes
