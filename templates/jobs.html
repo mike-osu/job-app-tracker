@@ -48,8 +48,36 @@
       </tr>
       {% endfor %}
     </tbody>
-  </table>    
-
+  </table>   
+  
+<div id="form"> 
+  <form action="" method="POST">
+    <input type="hidden" id="statement" name="statement" value="SEARCH">
+    <fieldset>
+    <legend><h2>Search Jobs:</h2></legend>
+    <table cellpadding="4" cellspacing="4">
+      <tr>
+        <td>Search by:
+          <select name="search_by" id="search_by">
+            <option value="">Select...</option>
+            <option value="company">Company</option>
+            <option value="job_type">Job Type</option>
+            <option value="title">Title</option>
+            <option value="location">Location</option>
+          </select>
+        </td>
+      </tr>
+        <td>Enter search phrase:</td><td><input text name="search_term" id="search_term" /></td>
+      <tr>
+        <td><input type="submit" value="Search All Jobs" /></td>  
+      </tr>
+      <tr>
+        <td><a href="/jobs"><small>clear search results</small></a></td></tr>
+      </tr>
+    </table>
+    </fieldset>
+  </form>  
+</div>  
 
 <div id="form">
   <form action="" method="POST">
@@ -139,33 +167,6 @@
       </tr>
     </table>
   </fieldset>
-</form>  
-</div>
-
-  
-<div id="form"> 
-  <form>
-    <fieldset>
-    <legend><h1>Search Jobs:</h1></legend>
-    <table cellpadding="4" cellspacing="4">
-      <tr>
-        <td>Search by:
-          <select>
-            <option value="">Select...</option>
-            <option value="company_id">Company</option>
-            <option value="job_type">Job Type</option>
-            <option value="title">Title</option>
-            <option value="location">Location</option>
-          </select>
-        </td>
-      </tr>
-        <td>Enter search phrase:</td><td><input text /></td>
-      <tr>
-        <td colspan="4"><input type="submit" value="Search All Jobs" /></td>  
-      </tr>
-    </tr>
-    </table>
-</fieldset>
 </form>  
 </div>
 
