@@ -22,77 +22,95 @@
   <br>
 
   <table class="aTable">
-    <tr>
-      <th>job_id</th>
-      <th>Title</th>
-      <th>Location</th>
-      <th>Descripton</th>
-      <th>is_active</th>
-      <th>Company</th>
-      <th>Job Type</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Software Engineer</td>
-      <td>Remote</td>
-      <td>Write Java code</td>
-      <td>Yes</td>
-      <td>Hooli</td>
-      <td>Technical</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Administrative Assistant</td>
-      <td>Los Angeles</td>
-      <td>Assist the CEO</td>
-      <td>No</td>
-      <td>Acme Corporation</td>
-      <td>Administrative</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Manager</td>
-      <td>New Mexico</td>
-      <td>Supervise fast food employees</td>
-      <td>Yes</td>
-      <td>Los Pollos Hermanos</td>
-      <td></td>
-    </tr>
-  </table>    
+    <thead>
+      <tr>
+          <!-- Iterate through each key in the first entry to get the
+          column name -->
+          {% for key in jobs[0].keys() %}
+      
+          <!-- Create a <th> tag with the key inside of it, this will be
+          our header row -->
+          <th>{{ key }}</th>
+      
+          <!-- End of this for loop -->
+          {% endfor %}
+      </tr>    
+    </thead>
 
+    <tbody>
+      {% for job in jobs %}
+      <tr>
+        {% for key in job.keys() %}
+        <td>
+          {{job[key]}}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>   
+  
+<div id="form"> 
+  <form action="" method="POST">
+    <input type="hidden" id="statement" name="statement" value="SEARCH">
+    <fieldset>
+    <legend><h2>Search Jobs:</h2></legend>
+    <table cellpadding="4" cellspacing="4">
+      <tr>
+        <td>Search by:
+          <select name="search_by" id="search_by">
+            <option value="">Select...</option>
+            <option value="company">Company</option>
+            <option value="job_type">Job Type</option>
+            <option value="title">Title</option>
+            <option value="location">Location</option>
+          </select>
+        </td>
+      </tr>
+        <td>Enter search phrase:</td><td><input text name="search_term" id="search_term" /></td>
+      <tr>
+        <td><input type="submit" value="Search All Jobs" /></td>  
+      </tr>
+      <tr>
+        <td><a href="/jobs"><small>clear search results</small></a></td></tr>
+      </tr>
+    </table>
+    </fieldset>
+  </form>  
+</div>  
 
 <div id="form">
-  <form>
+  <form action="" method="POST">
     <fieldset>
     <legend><h3>Add a New Job 
       <small>( * indicates a required field )</h3></legend>
+    <input type="hidden" id="statement" name="statement" value="INSERT">
     <table cellpadding="4" cellspacing="4">
       <tr>
-        <td>Title *</td><td><input text /></td>
+        <td>Title *</td><td><input text name="title" id="title" /></td>
       </tr>
-        <td>Location *</td><td><input text /></td>
+        <td>Location *</td><td><input text name="location" id="location" /></td>
       <tr>
-        <td>Description *</td><td><textarea rows="6" cols="50"></textarea></td>
+        <td>Description *</td><td><textarea name="description" id="description" rows="6" cols="50"></textarea></td>
       </tr>
       <tr>
         <td>Company *</td>
         <td>
-          <select>
-            <option value="">Select...</option>
-            <option value="1">Hooli</option>
-            <option value="2">Acme Corporation</option>
-            <option value="3">Los Pollos Hermanos</option>
-          </select>
+          <select name="company_id" id="company_id">
+            {% for c in companies %}
+            <option value="{{c['company_id']}}">{{c['name']}}</option>
+            {% endfor %}
+          </select> 
         </td>
       </tr>   
       <tr>
         <td>Job Type</td>
         <td>
-          <select>
+          <select name="job_type_code" id="job_type_code">
             <option value="">None</option>
-            <option value="EXEC">Executive</option>
-            <option value="TECH">Technical</option>
-            <option value="ADMIN">Administrative</option>
+            {% for jt in jobTypes %}
+            <option value="{{jt['job_type_code']}}">{{jt['description']}}</option>
+            {% endfor %}
           </select>                   
         </td>
       </tr>    
@@ -113,12 +131,12 @@
       <tr>
         <td>Job to Update *</td>
         <td>
-          <select>
+          <select name="job_id" id="job_id">
             <option value="">Select...</option>
-            <option value="1">Software Engineer, Hooli</option>
-            <option value="2">Administrative Assistant, Acme Corporation</option>
-            <option value="3">Manager, Los Pollos Hermanos</option>
-          </select>
+            {% for j in jobs %}
+            <option value="{{j['job_id']}}">{{j['Title']}}, {{j['Company']}}</option>
+            {% endfor %}
+          </select>                   
         </td>
       </tr>
       <tr>
@@ -149,33 +167,6 @@
       </tr>
     </table>
   </fieldset>
-</form>  
-</div>
-
-  
-<div id="form"> 
-  <form>
-    <fieldset>
-    <legend><h1>Search Jobs:</h1></legend>
-    <table cellpadding="4" cellspacing="4">
-      <tr>
-        <td>Search by:
-          <select>
-            <option value="">Select...</option>
-            <option value="company_id">Company</option>
-            <option value="job_type">Job Type</option>
-            <option value="title">Title</option>
-            <option value="location">Location</option>
-          </select>
-        </td>
-      </tr>
-        <td>Enter search phrase:</td><td><input text /></td>
-      <tr>
-        <td colspan="4"><input type="submit" value="Search All Jobs" /></td>  
-      </tr>
-    </tr>
-    </table>
-</fieldset>
 </form>  
 </div>
 
