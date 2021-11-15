@@ -28,9 +28,32 @@ def companies():
 """
 Contacts
 """
-@app.route('/contacts')
+@app.route('/contacts', methods=['post', 'get'])
 def contacts():
-    return render_template('contacts.html')
+    if request.method == 'POST':
+        firstName = request.form['first_name']
+        lastName = request.form['last_name']
+        email = request.form['email']
+        companyId = request.form['company_id']
+
+        if (firstName != '' and lastName != '' and email != '' and companyId != ''):
+            insertContactQuery = '''INSERT INTO contacts (first_name, last_name, email, company_id)
+                VALUES ('{}', '{}', '{}', {});'''.format(firstName, lastName, email, companyId)
+            db.execute_query(db_connection=db_connection, query=insertContactQuery)
+
+    contactsQuery = """SELECT c.contact_id, c.first_name 'First Name', c.last_name 'Last Name', c.email 'Email', co.name 'Company'
+        FROM contacts c INNER JOIN companies co on c.company_id = co.company_id;"""
+    cursor = db.execute_query(db_connection=db_connection, query=contactsQuery)
+    contacts = cursor.fetchall() 
+
+    # companies without a contact
+    companiesQuery = """SELECT companies.company_id, companies.name
+        FROM companies LEFT OUTER JOIN contacts ON companies.company_id = contacts.company_id
+        WHERE contacts.company_id IS NULL;"""
+    cursor = db.execute_query(db_connection=db_connection, query=companiesQuery)
+    companies = cursor.fetchall() 
+
+    return render_template('contacts.html', contacts=contacts, companies=companies)
 
 """
 Candidates

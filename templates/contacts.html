@@ -23,60 +23,56 @@
   
   
     <table class="aTable">
-      <tr>
-        <th>contact_id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email Address</th>
-        <th>company_id</th>
-        <th>Company Name</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Richard</td>
-        <td>Hendricks</td>
-        <td>rhendricks@hooli.com</td>
-        <td>1</td>
-        <td>Hooli</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Marvin</td>
-        <td>Acme</td>
-        <td>marvin@acme.com</td>
-        <td>2</td>
-        <td>Acme Corporation</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Gus</td>
-        <td>Fring</td>
-        <td>gfring@lospolloshermanos.com</td>
-        <td>3</td>
-        <td>Los Pollos Hermanos</td>
-      </tr>
+      <thead>
+        <tr>
+          <!-- Iterate through each key in the first entry to get the
+          column name -->
+          {% for key in contacts[0].keys() %}
+      
+          <!-- Create a <th> tag with the key inside of it, this will be
+          our header row -->
+          <th>{{ key }}</th>
+      
+          <!-- End of this for loop -->
+          {% endfor %}          
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for contact in contacts %}
+        <tr>
+          {% for key in contact.keys() %}
+          <td>
+            {{contact[key]}}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>     
   
       <div id="form">
-        <form>
+        <form action="" method="POST">
           <fieldset>
           <legend><h3>Add a Contact
             <small>( * indicates a required field )</h3></legend>
         <table cellpadding="4" cellspacing="4">
           <tr>
-            <td>First Name *</td><td><input text /></td>
+            <td>First Name *</td><td><input text name="first_name" id="first_name" /></td>
           </tr>
-            <td>Last Name *</td><td><input text /></td>
+            <td>Last Name *</td><td><input text name="last_name" id="last_name" /></td>
           <tr>
-            <td>Email Address *</td><td><input text /></td>
+            <td>Email Address *</td><td><input text name="email" id="email" /></td>
           <tr>
             <td>Company *</td>
             <td>
-              <select>
-                <option value="4">Delos Incorporated</option>
-                <option value="5">Monsters, Inc.</option>
-              </select>
-            </td>
+              <select name="company_id" id="company_id">
+                <option value="">Select...</option>
+                {% for c in companies %}
+                <option value="{{c['company_id']}}">{{c['name']}}</option>
+                {% endfor %}
+              </select> 
+            </td>            
           </tr>
           <tr>
             <td colspan="4"><input type="submit" value="Add Contact" /></td>  
