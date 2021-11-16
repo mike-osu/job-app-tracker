@@ -133,7 +133,19 @@ JobTypes
 """
 @app.route('/jobtypes')
 def jobtypes():
-    return render_template('jobtypes.html')      
+    if request.method == 'POST':
+        job_type_code = request.form['job_type_code']
+        job_type_description = request.form['job_type_description']
+
+        if (job_type_code != '' and job_type_description != ''):
+            insertJobTypeQuery = '''INSERT INTO job_types (job_type_code, description) VALUES ('{}', '{}');'''.format(job_type_code, job_type_description)
+            db.execute_query(db_connection=db_connection, query=insertJobTypeQuery)
+
+    job_typesQuery = """SELECT job_type_code, description FROM job_types;"""
+    cursor = db.execute_query(db_connection=db_connection, query=job_typesQuery)
+    job_types = cursor.fetchall() 
+
+    return render_template('jobtypes.html', job_types=job_types)   
 
 """
 Applications
