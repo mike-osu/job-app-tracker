@@ -21,35 +21,37 @@
   <br>
     
   <table class="aTable">
+    <thead>
       <tr>
-        <th>Job Type</th>
-        <th>Description</th>
+        {% for key in job_types[0].keys() %}
+        <th>{{ key }}</th>
+        {% endfor %}
+        
       </tr>
-      <tr>
-        <td>TECH</td>
-        <td>Technical</td>
-      </tr>
-      <tr>
-        <td>ADMIN</td>
-        <td>Administrative</td>   
-      </tr>
-      <tr>
-        <td>EXEC</td>
-        <td>Executive</td>   
-      </tr>
+    </thead>
+
+    </tbody>
+    {% for job_type in job_types %}
+    <tr>
+      {% for key in job_type.keys() %}
+      <td>{{ job_type[key] }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
     </table>    
 
     <div id="form">
-      <form>
+      <form action="" method="POST">
         <fieldset>
         <legend><h3>Add a Job Type
           <small>( * indicates a required field )</h3></legend>
+      <input type="hidden" id="statement" name="statement" value="INSERT">
       <table cellpadding="4" cellspacing="4">
         <tr>
-          <td>job_type_code *</td>
-          <td><input text placeholder="Enter Code in ALL Caps"/></td>
+          <td>job_type_code *</td><td><input name="job_type_code" id="job_type_code" text placeholder="Enter Code in ALL Caps" /></td>
         </tr>
-          <td>Description *</td><td><input text /></td>
+          <td>Description *</td><td><input name="job_type_description" id="job_type_description" /></td>
         <tr>
           <td colspan="4"><input type="submit" value="Add Job Type" /></td>  
         </tr>
