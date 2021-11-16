@@ -21,9 +21,24 @@ def root():
 """
 Companies
 """
-@app.route('/companies')
+@app.route('/companies', methods=['post', 'get'])
 def companies():
-    return render_template('companies.html')
+    if request.method == 'POST':
+        comp_name = request.form['comp_name']
+        comp_location = request.form['comp_location']
+        comp_industry = request.form['comp_industry']
+        comp_size = request.form['comp_size']
+
+        if (comp_name != '' and comp_location != '' and comp_industry != '' and comp_size != ''):
+            insertCompanyQuery = '''INSERT INTO companies (name, location, industry, size) VALUES ('{}', '{}', '{}', {});'''.format(comp_name, comp_location, comp_industry, comp_size)
+            db.execute_query(db_connection=db_connection, query=insertCompanyQuery)
+    
+    companiesQuery = """SELECT * from companies;"""
+    cursor = db.execute_query(db_connection=db_connection, query=companiesQuery)
+    companies = cursor.fetchall() 
+
+    return render_template('companies.html', companies=companies)
+
 
 """
 Contacts
