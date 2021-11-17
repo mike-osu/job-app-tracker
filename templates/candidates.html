@@ -21,55 +21,57 @@
   <br>
     
   <table class="aTable">
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email Address</th>
-      <th>Phone Number</th>
-    </tr>
-    <tr>
-      <td>Joe</td>
-      <td>Blow</td>
-      <td>joe@blow.com</td>
-      <td>123-456-7890</td>
-    </tr>
-    <tr>
-      <td>Darth</td>
-      <td>Vader</td>
-      <td>darthvader@empire.com</td>
-      <td>888-334-8719</td>
-    </tr>    
-    <tr>
-      <td>Vito</td>
-      <td>Corleone</td>
-      <td>godfather@mafia.com</td>
-      <td>800-777-5555</td>
-    </tr>  
+    <thead>
+      <tr>
+          <!-- Iterate through each key in the first entry to get the
+          column name -->
+          {% for key in candidates[0].keys() %}
+      
+          <!-- Create a <th> tag with the key inside of it, this will be
+          our header row -->
+          <th>{{ key }}</th>
+      
+          <!-- End of this for loop -->
+          {% endfor %}
+      </tr>    
+    </thead>
+
+    <tbody>
+      {% for candidate in candidates %}
+      <tr>
+        {% for key in candidate.keys() %}
+        <td>
+          {{candidate[key]}}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>      
     
     <div id="form">
-      <form>
+      <form action="" method="POST">
         <fieldset>
         <legend><h3>Add a Candidate
           <small>( * indicates a required field )</h3></legend>
-      <table cellpadding="4" cellspacing="4">
-        <tr>
-          <td>First Name *</td><td><input text /></td>
-        </tr>
-          <td>Last Name *</td><td><input text /></td>
-        <tr>
-          <td>Email Address *</td><td><input text /></td>
-        </tr>
-        <tr>
-          <td>Phone Number</td><td><input text /></td>
-        </tr>
-        <tr>
-          <td colspan="4"><input type="submit" value="Add Candidate" /></td>  
-        </tr>
-      </table>
-    </fieldset>
-  </form>  
-  </div>
+          <table cellpadding="4" cellspacing="4">
+            <tr>
+              <td>First Name *</td><td><input text name="first_name" id="first_name" /></td>
+            </tr>
+              <td>Last Name *</td><td><input text name="last_name" id="last_name" /></td>
+            <tr>
+              <td>Email Address *</td><td><input text name="email" id="email" /></td>
+            </tr>
+            <tr>
+              <td>Phone Number</td><td><input text name="phone_number" id="phone_number" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><input type="submit" value="Add Candidate" /></td>  
+            </tr>
+          </table>
+        </fieldset>
+      </form>  
+    </div>
 
 </body>
 </html>

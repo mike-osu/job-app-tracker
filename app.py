@@ -73,9 +73,25 @@ def contacts():
 """
 Candidates
 """
-@app.route('/candidates')
+@app.route('/candidates', methods=['post', 'get'])
 def candidates():
-    return render_template('candidates.html')  
+    if request.method == 'POST':
+        firstName = request.form['first_name']
+        lastName = request.form['last_name']
+        email = request.form['email']
+        phoneNumber = request.form['phone_number']
+
+        if (firstName.strip() != '' and lastName.strip() != '' and email.strip() != ''):
+            insertCandidateQuery = '''INSERT INTO candidates (first_name, last_name, email, phone_number)
+                VALUES ('{}', '{}', '{}', '{}');'''.format(firstName, lastName, email, phoneNumber)
+            db.execute_query(db_connection=db_connection, query=insertCandidateQuery)            
+
+    candidatesQuery = """SELECT candidate_id, first_name 'First Name', last_name 'Last Name', email 'Email', phone_number 'Phone Number'
+        FROM candidates;"""
+    cursor = db.execute_query(db_connection=db_connection, query=candidatesQuery)
+    candidates = cursor.fetchall()
+
+    return render_template('candidates.html', candidates=candidates)  
 
 """
 Jobs
