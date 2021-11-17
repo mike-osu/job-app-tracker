@@ -105,6 +105,15 @@ def jobs():
         LEFT OUTER JOIN job_types jt on j.job_type_code = jt.job_type_code"""
     whereClause = ''
     args = None
+    selectedJob = None
+
+    if request.args.get('job_id') and request.method != 'POST':
+        # user selected a job to update
+        # pre-populate update form with current job attribute values
+        jobId = request.args.get('job_id')
+        jobSelectedQuery = "SELECT * FROM jobs WHERE job_id = " + jobId + ";"
+        cursor = db.execute_query(db_connection=db_connection, query=jobSelectedQuery)
+        selectedJob = cursor.fetchone()
 
     if request.method == 'POST':
         if request.form['statement'] == 'INSERT':
@@ -114,7 +123,7 @@ def jobs():
             companyId = request.form['company_id']
             jobTypeCode = request.form['job_type_code']
 
-            if (title != '' and location != '' and description != ''):
+            if (title.strip() != '' and location.strip() != '' and description.strip() != ''):
                 if (jobTypeCode != ''):
                     insertJobQuery = '''INSERT INTO jobs (title, location, description, is_active, company_id, job_type_code) 
                         VALUES ('{}', '{}', '{}', {}, {}, '{}');'''.format(title, location, description, 1, companyId, jobTypeCode)
@@ -128,7 +137,7 @@ def jobs():
         if request.form['statement'] == 'SEARCH':
             searchBy = request.form['search_by']
             searchTerm = request.form['search_term']
-            if searchBy != '' and searchTerm != '':
+            if searchBy != '' and searchTerm.strip() != '':
                 if searchBy == 'company':
                     whereClause = " WHERE c.name LIKE %s"
                 elif searchBy == 'job_type':
@@ -140,9 +149,28 @@ def jobs():
 
             jobsQuery = jobsQuery + whereClause
 
+        if request.form['statement'] == 'UPDATE':
+            updateJobId = request.form['update_job_id']
+            title = request.form['update_title']
+            location = request.form['update_location']
+            description = request.form['update_description']
+            jobTypeCode = request.form['update_job_type_code']
+
+            if updateJobId and title.strip() != '' and location.strip() != '' and description.strip() != '':
+                isActive = request.form['update_is_active']
+
+                if jobTypeCode == '':
+                    updateJobQuery = """UPDATE jobs SET title = '{}', location = '{}', description = '{}', is_active = {},
+                        job_type_code = NULL WHERE job_id = {};""".format(title, location, description, isActive, updateJobId)
+                else:              
+                    updateJobQuery = """UPDATE jobs SET title = '{}', location = '{}', description = '{}', is_active = {},
+                        job_type_code = '{}' WHERE job_id = {};""".format(title, location, description, isActive, jobTypeCode, updateJobId)
+                        
+                db.execute_query(db_connection=db_connection, query=updateJobQuery)
+
     jobsQuery = jobsQuery + ';'
     if (whereClause != ''):
-        args=['%'+searchTerm+'%']
+        args=['%'+searchTerm.strip()+'%']
         cursor = db.execute_query(db_connection=db_connection, query=jobsQuery, query_params=args)
     else:
         cursor = db.execute_query(db_connection=db_connection, query=jobsQuery)
@@ -157,7 +185,11 @@ def jobs():
     cursor = db.execute_query(db_connection=db_connection, query=jobTypesQuery)
     jobTypes = cursor.fetchall()
 
-    return render_template('jobs.html', jobs=jobs, companies=companies, jobTypes=jobTypes)       
+    jobsForUpdateQuery = "SELECT j.job_id, j.title, c.name FROM jobs j INNER JOIN companies c ON j.company_id = c.company_id;"
+    cursor = db.execute_query(db_connection=db_connection, query=jobsForUpdateQuery)
+    jobsForUpdate = cursor.fetchall()
+
+    return render_template('jobs.html', jobs=jobs, companies=companies, jobTypes=jobTypes, jobsForUpdate=jobsForUpdate, selectedJob=selectedJob)       
 
 """
 JobTypes
