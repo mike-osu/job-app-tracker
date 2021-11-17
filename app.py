@@ -146,7 +146,7 @@ def jobs():
 """
 JobTypes
 """
-@app.route('/jobtypes')
+@app.route('/jobtypes', methods=['post', 'get'])
 def jobtypes():
     if request.method == 'POST':
         job_type_code = request.form['job_type_code']
