@@ -2,6 +2,13 @@
 <head>
     <title>Job App Tracker</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" charset="utf-8">
+      function jobSelected() {
+        var jobIdSelect = document.getElementById('update_job_id');
+        var jobId = jobIdSelect.options[jobIdSelect.selectedIndex].getAttribute("value");
+        window.location = '/jobs?job_id=' + jobId;
+      }
+    </script>
 </head>
 <body>
 
@@ -79,10 +86,83 @@
   </form>  
 </div>  
 
+<div id="form"> 
+  <form action="" method="POST">
+    <input type="hidden" id="statement" name="statement" value="UPDATE">
+    <fieldset>
+    <legend><h2>Update a Job:
+      <small>( * indicates a required field )</h2></legend>
+
+    <table cellpadding="4" cellspacing="4">
+      <tr>
+        <td>Job to Update *</td>
+        <td>
+          <select name="update_job_id" id="update_job_id" onChange="jobSelected()">
+            <option value="">Select...</option>
+            {% for j in jobsForUpdate %}
+              {% if j['job_id'] == selectedJob.job_id %}
+              <option value="{{j['job_id']}}" selected>{{j['title']}}, {{j['name']}}</option>
+              {% else %}
+              <option value="{{j['job_id']}}">{{j['title']}}, {{j['name']}}</option>
+              {% endif %}
+            {% endfor %}
+          </select>                   
+        </td>
+      </tr>
+      <tr>
+        <td>Title *</td><td><input text name="update_title" id="update_title" value="{{selectedJob.title}}" /></td>
+      </tr>
+        <td>Location *</td><td><input text name="update_location" id="update_location" value="{{selectedJob.location}}" /></td>
+      <tr>
+        <td>Description *</td><td><input text name="update_description" id="update_description" value="{{selectedJob.description}}" /></td>
+      </tr>
+      <tr>
+        <td>is_active? * </td>
+        <td>
+          <div>
+            {% if selectedJob.is_active == True %}
+            <input type="radio" id="is_active_true" name="update_is_active" value="1" checked>
+            {% else %}
+            <input type="radio" id="is_active_true" name="update_is_active" value="1">
+            {% endif %}
+            <label for="is_active_true">Yes</label>
+          </div>
+          <div>
+            {% if selectedJob.is_active == False %}
+            <input type="radio" id="is_active_false" name="update_is_active" value="0" checked>
+            {% else %}
+            <input type="radio" id="is_active_false" name="update_is_active" value="0">
+            {% endif %}
+            <label for="is_active_false">No</label>
+          </div>
+      </tr>  
+      <tr>
+        <td>Job Type</td>
+        <td>
+          <select name="update_job_type_code" id="update_job_type_code">
+            <option value="">None</option>
+            {% for jt in jobTypes %}
+              {% if jt['job_type_code'] == selectedJob.job_type_code %}
+              <option value="{{jt['job_type_code']}}" selected>{{jt['description']}}</option>
+              {% else %}
+              <option value="{{jt['job_type_code']}}">{{jt['description']}}</option>
+              {% endif %}
+            {% endfor %}
+          </select>                   
+        </td>
+      </tr>          
+      <tr>
+        <td colspan="4"><input type="submit" value="Update Job" /></td>  
+      </tr>
+    </table>
+    </fieldset>
+  </form>  
+</div>
+
 <div id="form">
   <form action="" method="POST">
     <fieldset>
-    <legend><h3>Add a New Job 
+    <legend><h2>Add a New Job 
       <small>( * indicates a required field )</h3></legend>
     <input type="hidden" id="statement" name="statement" value="INSERT">
     <table cellpadding="4" cellspacing="4">
@@ -119,55 +199,6 @@
     </table>
   </fieldset>
   </form>  
-</div>
-
-<div id="form"> 
-  <form>
-    <fieldset>
-    <legend><h2>Update a Job:
-      <small>( * indicates a required field )</h2></legend>
-
-    <table cellpadding="4" cellspacing="4">
-      <tr>
-        <td>Job to Update *</td>
-        <td>
-          <select name="job_id" id="job_id">
-            <option value="">Select...</option>
-            {% for j in jobs %}
-            <option value="{{j['job_id']}}">{{j['Title']}}, {{j['Company']}}</option>
-            {% endfor %}
-          </select>                   
-        </td>
-      </tr>
-      <tr>
-        <td>Title *</td><td><input text /></td>
-      </tr>
-        <td>Location *</td><td><input text /></td>
-      <tr>
-        <td>Description *</td><td><input text /></td>
-      </tr>
-      <tr>
-        <td>is_active? * </td>
-        <td>
-          <input type="checkbox"><small> (mark if yes)</small></td>
-      </tr>  
-      <tr>
-        <td>Job Type</td>
-        <td>
-          <select>
-            <option value="">None</option>
-            <option value="EXEC">Executive</option>
-            <option value="TECH">Technical</option>
-            <option value="ADMIN">Administrative</option>
-          </select>          
-        </td>
-      </tr>          
-      <tr>
-        <td colspan="4"><input type="submit" value="Update Job" /></td>  
-      </tr>
-    </table>
-  </fieldset>
-</form>  
 </div>
 
 </body>
