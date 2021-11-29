@@ -28,6 +28,9 @@ WHERE contacts.company_id IS NULL;
 INSERT INTO contacts (first_name, last_name, email_address, company_id)
 VALUES (:first_name_input, :last_name_input, :email_address_input, :company_id_from_dropdown_input);
 
+-- Delete a Contact
+DELETE FROM contacts WHERE contact_id = :contact_id_selected;
+
 
 -----------------------
 -- Candidates

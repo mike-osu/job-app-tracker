@@ -34,7 +34,8 @@
           <th>{{ key }}</th>
       
           <!-- End of this for loop -->
-          {% endfor %}          
+          {% endfor %}    
+          <th></th>      
         </tr>
       </thead>
 
@@ -46,16 +47,29 @@
             {{contact[key]}}
           </td>
           {% endfor %}
+          <td>
+            <br />
+            <form action="" method="POST">
+              <input type="hidden" id="statement" name="statement" value="DELETE">
+              <input type="hidden" id="contact_id" name="contact_id" value="{{contact['contact_id']}}">
+              <input type="submit" value="Delete Contact">
+            </form>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>     
-  
-      <div id="form">
-        <form action="" method="POST">
-          <fieldset>
-          <legend><h3>Add a Contact
-            <small>( * indicates a required field )</h3></legend>
+
+    <div id="form">
+      <form action="" method="POST">
+        <input type="hidden" id="statement" name="statement" value="INSERT">
+        <fieldset>
+        <legend>
+          <h3>Add a Contact <small>( * indicates a required field )</small></h3>
+        </legend>
+        <h4>
+          A company can only have one contact.  To change a company's contact, delete the existing contact, and then add the new one.
+        </h4>
         <table cellpadding="4" cellspacing="4">
           <tr>
             <td>First Name *</td><td><input text name="first_name" id="first_name" /></td>
@@ -80,8 +94,8 @@
         </table>
       </fieldset>
     </form>  
-    </div>
+  </div>
   
-  </body>
-  </html>
+</body>
+</html>
   
