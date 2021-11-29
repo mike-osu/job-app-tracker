@@ -46,15 +46,22 @@ Contacts
 @app.route('/contacts', methods=['post', 'get'])
 def contacts():
     if request.method == 'POST':
-        firstName = request.form['first_name']
-        lastName = request.form['last_name']
-        email = request.form['email']
-        companyId = request.form['company_id']
+        if request.form['statement'] == 'INSERT':
+            firstName = request.form['first_name']
+            lastName = request.form['last_name']
+            email = request.form['email']
+            companyId = request.form['company_id']
 
-        if (firstName != '' and lastName != '' and email != '' and companyId != ''):
-            insertContactQuery = '''INSERT INTO contacts (first_name, last_name, email, company_id)
-                VALUES ('{}', '{}', '{}', {});'''.format(firstName, lastName, email, companyId)
-            db.execute_query(db_connection=db_connection, query=insertContactQuery)
+            if (firstName != '' and lastName != '' and email != '' and companyId != ''):
+                insertContactQuery = '''INSERT INTO contacts (first_name, last_name, email, company_id)
+                    VALUES ('{}', '{}', '{}', {});'''.format(firstName, lastName, email, companyId)
+                db.execute_query(db_connection=db_connection, query=insertContactQuery)
+
+        # delete
+        if request.form['statement'] == 'DELETE':
+            contactId = request.form['contact_id']
+            deleteContactQuery = "DELETE FROM contacts WHERE contact_id = {};".format(contactId)
+            db.execute_query(db_connection=db_connection, query=deleteContactQuery)        
 
     contactsQuery = """SELECT c.contact_id, c.first_name 'First Name', c.last_name 'Last Name', c.email 'Email', co.name 'Company'
         FROM contacts c INNER JOIN companies co on c.company_id = co.company_id;"""
