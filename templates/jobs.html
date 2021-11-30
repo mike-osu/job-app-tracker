@@ -30,6 +30,7 @@
   <p></p>
   <br>
 
+  {% if jobs|length > 0 %}
   <table class="aTable">
     <thead>
       <tr>
@@ -58,6 +59,11 @@
       {% endfor %}
     </tbody>
   </table>   
+  {% else %}
+    <div style="color: red; margin-left: 20px;">
+      &nbsp;&nbsp;&nbsp;&nbsp;<h3>No jobs found</h3>
+    </div>
+  {% endif %}
   
 <div id="form"> 
   <form action="" method="POST">
